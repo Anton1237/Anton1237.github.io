@@ -1,0 +1,31 @@
+    header {
+   
+    background-color: blue; 
+    text-align: center
+}
+    header p{
+    color: red
+}
+    main p:first-of-type{
+  color: red
+}
+
+    main p:nth-of-type(3){
+    background-color:blue;
+    color: yellow;
+    padding: 10px; 
+    
+        
+}
+    img{
+    display: block;
+    margin: 50px;
+    width: 500px;
+    padding-left: 425px;
+}
+
+button{
+    background-color: green;
+    font-size: 100px;
+    
+}
