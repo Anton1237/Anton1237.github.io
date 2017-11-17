@@ -12,3 +12,13 @@ div#info{
 .selected {
     background-color: red;
 } 
+
+input[type="color"] { 
+width:30px; 
+height:30px;  
+}
+
+footer{
+    padding: 15px;
+    
+}
