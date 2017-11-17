@@ -1,0 +1,14 @@
+header {
+    color: blue
+}
+div#info{
+    display:none;
+    background-color: aqua;
+}
+#openinfo{
+    cursor: pointer;
+}
+
+.selected {
+    background-color: red;
+} 
