@@ -1,7 +1,15 @@
- $(function() {
+$(function(){
+    $("#sakernav").click(function(){
+        $("#saker").show();
+    });
 
-$("#openinfo").click(function(){   
-            $("#info").show();
-            $("header").css("heigt", "200px");
-        });        
-    }); 
+  $("#schysstnav").click(function(){
+        $("#schysst").show();
+    });
+
+  $("#standardnav").click(function(){
+        $("#standard").show();
+    });
+
+
+});

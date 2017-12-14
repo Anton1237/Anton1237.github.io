@@ -8,11 +8,13 @@ header{
    }
 
 footer{
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom:0;
     background-color: black;
     width: 100%;
     margin: 0 auto;
+    color: white;
+    text-decoration: none;
     
 }
 body{
@@ -24,7 +26,9 @@ nav{
     text-align: center;
     background-color: black;
 }
-
+nav :hover {
+    background-color: lightgray;
+}
 div#navleft{
     position: absolute;
     top: 100px;
@@ -38,9 +42,9 @@ div#navright{
    
 }
 
-nav a{
+nav a, nav p{
     display: inline-block;
-    padding: 10px;
+    padding: 15px;
     margin: 10px; 
     background-color: white;
     font-size: 150%;
@@ -50,3 +54,29 @@ nav a{
     
 }
 
+section{
+    display: none;
+    text-align: center;
+    margin-top: 205px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: lightgray;  
+    text-align: left;
+}
+
+ul{
+    text-align: left;
+}
+
+
+a, a:visited{
+    color: black;
+}
+
+footer a, footer a:visited{
+    color: white;
+}
+
+h2{
+    text-align: center;
+}
