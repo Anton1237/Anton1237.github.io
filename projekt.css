@@ -19,6 +19,7 @@ footer{
 }
 body{
     margin: 0;
+    max-width: 100%;
 }
 
 nav{
@@ -57,26 +58,36 @@ nav a, nav p{
 section{
     display: none;
     text-align: center;
-    margin-top: 205px;
+    margin-top: 200px;
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 100px;
     background-color: lightgray;  
     text-align: left;
+    max-width: 100%;
+}
+
+section#huvud{
+    display: block;
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 100px;
+    
 }
 
 ul{
     text-align: left;
 }
-
-
 a, a:visited{
     color: black;
 }
-
 footer a, footer a:visited{
     color: white;
 }
-
 h2{
     text-align: center;
+}
+main{
+    display: block;
+    max-width: 100%;
 }
