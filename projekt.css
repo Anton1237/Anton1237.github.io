@@ -92,3 +92,17 @@ main{
     max-width: 100%;
    
 }
+
+@media screen and (max-width: 550px){
+    body{
+        width: 100%;
+    }
+    main width 100%;
+    nav right
+    nav left 
+
+
+
+
+
+}
