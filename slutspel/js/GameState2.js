@@ -10,8 +10,7 @@ var GameState2 = {
         plattform4 = this.add.sprite(630,525,"plattform");
         plattform5 = this.add.sprite(500,220,"plattform");
         player1 = this.add.sprite(3,500,"player",3);
-        enemy1 = this.add.sprite(150,570,"enemy");
-        
+        enemy1 = this.add.sprite(200,570,"enemy");
         checkpoint = this.add.sprite(180,115,"goal");
         player1.inputEnabled = true;
         var enemy; 
@@ -106,7 +105,12 @@ update: function (){
 
         this.physics.arcade.collide(enemy1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, enemy1]);
         
-//hopp av player
+
+    
+    
+    
+    
+    //hopp av player
         if(JumpButton.isDown && player1.body.touching.down){
         player1.body.velocity.y = -450;
         }

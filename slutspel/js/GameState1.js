@@ -1,4 +1,3 @@
-
 //Skapar objektet
 var GameState1 = {
     create:function(){
@@ -16,7 +15,7 @@ var GameState1 = {
         wall1 = this.add.sprite(75,599, "wall")
         checkpoint = this.add.sprite(180,115,"goal");
         player1.inputEnabled = true;
-        var enemy; 
+         
         musik = this.add.audio("bgmusic"); 
         //musik.play();
         ljud = this.add.audio("soundeffect");
@@ -55,64 +54,63 @@ var GameState1 = {
        
 //ställ in tangenterna
         cursors = this.input.keyboard.createCursorKeys();       
-        JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.W);       
+        JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);       
         
 //animationer  
         
-        player1.animations.add("run-h",[3,4,5,6,7,8,9,10],13,true);
-        player1.animations.add("run-v",[3,4,5,6,7,8,9,10],13,true);
+        player1.animations.add("run",[3,4,5,6,7,8,9,10],13,true);
         player1.animations.add("stop",[2]);
-        enemy1.animations.add("walk-v"[1,2,3,4,5,6],6, true);
-        enemy1.animations.add("walk-h"[1,2,3,4,5,6],6, true);
+        
+        enemy1.animations.add("walk"[1,2,3,4,5,6],6, true);
         enemy1.animations.add("stop",[4]);
-//enemies
-    /*
-        enemy = game.add.group();
-        enemy.enableBody = true; 
-        enemy.physicsBodyType = Phaser.Physics.ARCADE;
-    */
+        
+        enemy2.animations.add("walk"[1,2,3,4,5,6],6, true);
+        enemy2.animations.add("stop",[4]);
+    
     },
     
 
  //rörelse av player   
 update: function (){
         if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
-            player1.animations.play("run-v");
-            player1.body.velocity.x = -200;
+            player1.animations.play("run");
+            player1.body.velocity.x = -300;
             player1.scale.x = -1;
         }else if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
-            player1.animations.play("run-h");
+            player1.animations.play("run");
             player1.body.velocity.x = 300;
             player1.scale.x = 1;
         }else{
             player1.body.velocity.x = 0;
             player1.animations.play("stop")
-            enemy1.animations.play("stop")
+            //enemy1.animations.play("stop")
         }
         
 //rörelse av fiender
-        if(player1.x > enemy1.x){
-            enemy1.animations.play("walk-h")
+        if(player1.x > enemy1.x && player1.y > 500){
+            enemy1.animations.play("walk")
             enemy1.body.velocity.x = 100;
             enemy1.scale.x = 1;
         }else if(player1.x < enemy1.x){
-            enemy1.animations.play("walk-v")
+            enemy1.animations.play("walk")
             enemy1.body.velocity.x = -100;
             enemy1.scale.x = -1;
+        }else{
+            enemy1.frame = 0;
+            enemy1.body.velocity.x = 0; 
         }
         
-        
+        //if(enemy2.x){}
         
             
             
 //läs till kollision
         this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, enemy1, enemy2]);
 
-        this.physics.arcade.collide(enemy1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, player1]);
+        this.physics.arcade.collide(enemy1,[wall1, golv1, golv2]);
         
-        this.physics.arcade.collide(enemy2,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, player1]);
-        
-
+        this.physics.arcade.collide(enemy2,[wall1, golv1, golv2,plattform1, plattform2, plattform3, plattform4, plattform5]);
+       
     
 //hopp av player
         if(JumpButton.isDown && player1.body.touching.down){
@@ -131,8 +129,7 @@ update: function (){
         } 
         
         
-    
-    
+
     },
 
 };
