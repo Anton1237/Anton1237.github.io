@@ -10,7 +10,7 @@ var GameState2 = {
         plattform4 = this.add.sprite(630,525,"plattform");
         plattform5 = this.add.sprite(500,220,"plattform");
         player1 = this.add.sprite(3,500,"player",3);
-        enemy1 = this.add.sprite(200,570,"enemy");
+        enemy1 = this.add.sprite(300,570,"enemy");
         checkpoint = this.add.sprite(180,115,"goal");
         player1.inputEnabled = true;
         var enemy; 
@@ -20,7 +20,7 @@ var GameState2 = {
         
         
 //ställ in fysik   
-        this.physics.enable([player1, plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, checkpoint, enemy1], Phaser.Physics.ARCADE);
+        this.physics.enable([player1, plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, checkpoint, enemy1], Phaser.Physics.ARCADE);
         player1.body.bounce.y = 0.2;
         player1.body.gravity.y = 600; 
         player1.anchor.setTo(0.5);
@@ -40,8 +40,6 @@ var GameState2 = {
         plattform4.body.immovable = true; 
         plattform5.body.allowGravity = false;  
         plattform5.body.immovable = true; 
-        wall1.body.allowGravity = false;
-        wall1.body.immovable = true;
         golv1.body.allowGravity = false;
         golv1.body.immovable = true;
         golv2.body.allowGravity = false;
@@ -101,9 +99,9 @@ update: function (){
             
             
 //läs till kollision
-        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, enemy1]);
+        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, enemy1]);
 
-        this.physics.arcade.collide(enemy1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, enemy1]);
+        this.physics.arcade.collide(enemy1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, enemy1]);
         
 
     
@@ -119,7 +117,7 @@ update: function (){
         this.game.physics.arcade.overlap(player1, checkpoint, this.ny, null, this);
         
         if(this.physics.arcade.collide(player1, checkpoint)){
-            this.game.state.start("GameOver", true, false);
+            this.game.state.start("GameStateWin", true, false);
         } 
 
         if(this.physics.arcade.collide(player1, enemy1)){

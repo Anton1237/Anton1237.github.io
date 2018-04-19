@@ -4,15 +4,14 @@ var GameState1 = {
         this.add.tileSprite(0,0, 800, 1000, "background");
         golv1 = this.add.sprite(-10,690,"golv");
         golv2 = this.add.sprite(500,690,"golv");
-        plattform1 = this.add.sprite(150,500,"plattform");
+        plattform1 = this.add.sprite(180,525,"plattform");
         plattform2 = this.add.sprite(150,180,"plattform");
         plattform3 = this.add.sprite(630,325,"plattform");
         plattform4 = this.add.sprite(480,465,"plattform");
         plattform5 = this.add.sprite(400,180,"plattform");
         player1 = this.add.sprite(3,500,"player",3);
-        enemy1 = this.add.sprite(150,570,"enemy");
-        enemy2 = this.add.sprite(630,310,"enemy");
-        wall1 = this.add.sprite(75,599, "wall")
+        enemy1 = this.add.sprite(300,570,"enemy");
+        enemy2 = this.add.sprite(580,310,"enemy");
         checkpoint = this.add.sprite(180,115,"goal");
         player1.inputEnabled = true;
          
@@ -22,7 +21,7 @@ var GameState1 = {
         
         
 //ställ in fysik   
-        this.physics.enable([player1, plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, checkpoint, enemy1, enemy2], Phaser.Physics.ARCADE);
+        this.physics.enable([player1, plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, checkpoint, enemy1, enemy2], Phaser.Physics.ARCADE);
         player1.body.bounce.y = 0.2;
         player1.body.gravity.y = 600; 
         player1.anchor.setTo(0.5);
@@ -32,6 +31,7 @@ var GameState1 = {
         enemy2.body.bounce.y = 0.2;
         enemy2.body.gravity.y = 600; 
         enemy2.anchor.setTo(0.5);
+        enemy2.direction = 'h';
         
     //hindra plattformar från att röra sig         
         plattform1.body.allowGravity = false;
@@ -44,8 +44,6 @@ var GameState1 = {
         plattform4.body.immovable = true; 
         plattform5.body.allowGravity = false;  
         plattform5.body.immovable = true; 
-        wall1.body.allowGravity = false;
-        wall1.body.immovable = true;
         golv1.body.allowGravity = false;
         golv1.body.immovable = true;
         golv2.body.allowGravity = false;
@@ -65,7 +63,7 @@ var GameState1 = {
         enemy1.animations.add("stop",[4]);
         
         enemy2.animations.add("walk"[1,2,3,4,5,6],6, true);
-        enemy2.animations.add("stop",[4]);
+
     
     },
     
@@ -83,7 +81,7 @@ update: function (){
         }else{
             player1.body.velocity.x = 0;
             player1.animations.play("stop")
-            //enemy1.animations.play("stop")
+            
         }
         
 //rörelse av fiender
@@ -100,16 +98,29 @@ update: function (){
             enemy1.body.velocity.x = 0; 
         }
         
-        //if(enemy2.x){}
-        
+        if(enemy2.x >= 630 && enemy2.direction == 'h'){
+            enemy2.animations.play("walk");
+            enemy2.x += 1;
+            enemy2.direction = 'v';
             
             
+        }else if(enemy2.x <= 470 && enemy2.direction == 'v'){
+            enemy2.animations.play("walk");
+            enemy2.body.velocity.x = 0;
+            enemy2.direction = 'h';
+            
+        }else{
+            enemy2.body.velocity.x = 100;   
+        }
+    console.log(enemy2.direction);
+    console.log(enemy2.x);
+         
 //läs till kollision
-        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, wall1, golv1, golv2, enemy1, enemy2]);
+        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, enemy1, enemy2]);
 
-        this.physics.arcade.collide(enemy1,[wall1, golv1, golv2]);
+        this.physics.arcade.collide(enemy1,[golv1, golv2]);
         
-        this.physics.arcade.collide(enemy2,[wall1, golv1, golv2,plattform1, plattform2, plattform3, plattform4, plattform5]);
+        this.physics.arcade.collide(enemy2,[golv1, golv2,plattform1, plattform2, plattform3, plattform4, plattform5]);
        
     
 //hopp av player

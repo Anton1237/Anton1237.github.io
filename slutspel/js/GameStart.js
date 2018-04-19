@@ -10,6 +10,7 @@ var GameStart = {
     this.load.image("iwall", "assets/osynligwall.png")
     this.load.spritesheet("player", "assets/tempelrunner.png", 50,60,13);
     this.load.spritesheet("enemy", "assets/pingviner.png", 56,63);
+    this.load.spritesheet("igen", "assets/restartknapp.png",150,42)
     this.load.audio("bgmusic","assets/bgmusic.mp3"); 
     this.load.audio("soundeffect","assets/soundeffect.mp3" ); 
  

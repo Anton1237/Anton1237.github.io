@@ -5,4 +5,5 @@ game.state.add("GameStart" , GameStart);
 game.state.add("GameState1" , GameState1);
 game.state.add("GameState2" , GameState2);
 game.state.add("GameOver" , GameOver);
+game.state.add("GameStateWin" , GameStateWin);
 game.state.start("GameStart"); 

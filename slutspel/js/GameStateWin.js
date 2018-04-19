@@ -1,9 +1,9 @@
 //Skapar objektet
-var GameOver = {
+var GameStateWin = {
     create: function(){
          this.add.tileSprite(0,0,800,1000, "background"); 
         
-        var slut = this.add.text(game.world.centerX, 200, "GameOver", {fontSize: "55px", fill: "#fff"});
+        var slut = this.add.text(game.world.centerX, 200, "Congratulations!", {fontSize: "55px", fill: "#fff"});
         slut.anchor.setTo(0.5);
 
         
@@ -18,5 +18,3 @@ var GameOver = {
     }
 
 };
-
-
