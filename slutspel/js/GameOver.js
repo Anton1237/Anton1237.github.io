@@ -6,17 +6,15 @@ var GameOver = {
         var slut = this.add.text(game.world.centerX, 200, "GameOver", {fontSize: "55px", fill: "#fff"});
         slut.anchor.setTo(0.5);
 
+    
+      var startom = this.add.button(425,450, "igen");
+             startom.anchor.setTo(0.5);
+
+             startom.events.onInputUp.add(function(){
+             this.state.start('GameState1',true,false); 
+             }, this);
         
-        var startom = this.add.button(360,450, "igen");
-        startom.anchor.setTo(0.5);
-
-        startom.events.onInputUp.add(function(){
-        this.state.start(GameState1); 
-        }, this);
-    
-    
-    }
-
-};
+        }
+    };
 
 
