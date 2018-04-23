@@ -1,3 +1,4 @@
+//preload allt innehåll
 var GameStart = {
  preload: function(){
     this.load.image("background", "assets/starbackground.png")
@@ -14,9 +15,9 @@ var GameStart = {
     this.load.audio("soundeffect","assets/soundeffect.mp3" ); 
  }, 
 
+//skapar spelets framsida
 create: function(){
-        
-       
+    
         this.add.tileSprite(0,0,800,1000,"background");
         this.add.sprite(280,450, "instruktioner");
     

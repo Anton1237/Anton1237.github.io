@@ -30,7 +30,7 @@ var GameState2 = {
 
         
     //hindra plattformar från att röra sig         
-        plattform1.body.allowGravity = false;
+        plattform1.body.allowGravity = false; 
         plattform1.body.immovable = true;
         plattform2.body.allowGravity = false;  
         plattform2.body.immovable = true;    
