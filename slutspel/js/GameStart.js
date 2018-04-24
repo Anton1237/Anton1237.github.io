@@ -12,7 +12,7 @@ var GameStart = {
     this.load.spritesheet("enemy", "assets/pingviner.png", 56,63);
     this.load.spritesheet("igen", "assets/restartknapp.png",150,42)
     this.load.audio("bgmusic","assets/bgmusic.mp3"); 
-    this.load.audio("soundeffect","assets/soundeffect.mp3" ); 
+    
  }, 
 
 //skapar spelets framsida
@@ -35,5 +35,14 @@ create: function(){
             this.state.start("GameState1", true, false); 
         }, this);
 
-     }
+     
+    musik = this.add.audio("bgmusic"); 
+    musik.play();
+
+
+
+
+
+
+    }
 };

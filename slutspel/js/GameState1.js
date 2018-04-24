@@ -10,14 +10,11 @@ var GameState1 = {
         plattform4 = this.add.sprite(480,465,"plattform");
         plattform5 = this.add.sprite(400,180,"plattform");
         player1 = this.add.sprite(3,500,"player",3);
-        enemy1 = this.add.sprite(300,620,"enemy");
-        enemy2 = this.add.sprite(580,310,"enemy");
+        enemy1 = this.add.sprite(300,665,"enemy");
+        enemy2 = this.add.sprite(650,300,"enemy");
         checkpoint = this.add.sprite(180,115,"goal");
         wall1 = this.add.sprite(75,599, "wall")
         player1.inputEnabled = true;
-        musik = this.add.audio("bgmusic"); 
-        musik.play();
-        ljud = this.add.audio("soundeffect");
         
         
 //ställ in fysik   
@@ -63,35 +60,33 @@ var GameState1 = {
         player1.animations.add("stop",[2]);
         enemy1.animations.add("walk"[0,1,2,3],6, true);
         enemy1.animations.add("stop",[4]);
+        enemy1.animations.play("walk");
         enemy2.animations.add("walk"[0,1,2,3],6, true);
         enemy2.animations.play("walk");
         
-//enemies
+//enemies och player
         enemy1.body.collideWorldBounds = true;
         enemy1.body.onCollide = new Phaser.Signal();
         enemy1.body.onCollide.add(this.hitWall, this);
         enemy2.body.velocity.x = 50;
-        
-          
+        enemy1.body.velocity.x = 50;
+        player1.body.collideWorldBounds = true;  
         
 //poängräknare 
         scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
-     },
+    },
     
 
     
 //metod för patrullerande enemy
-   hitWall: function(){
+    hitWall: function(){
         if(enemy1.riktning == 'h'){
             enemy1.riktning = 'v';
         }else{
             enemy1.riktning = 'h';
-    }
-},    
-
- 
-    
-    
+        }
+    },    
+   
 //rörelse av player   
     update: function (){
         if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
@@ -107,26 +102,30 @@ var GameState1 = {
             player1.animations.play("stop")
         }
 //rörelse av fiende1
+        enemy1.body.velocity.y = 0;
         if(player1.y > 570 && player1.x > enemy1.x && enemy1.direction == "v"){
-            enemy1.animations.play("walk")
             enemy1.body.velocity.x = 100;
+            enemy1.direction = "h";
             enemy1.scale.x = 1;
         }else if(player1.y > 570 && player1.x < enemy1.x && enemy1.direction == "h"){
-            enemy1.animations.play("walk")
+            //enemy1.animations.play("walk")
             enemy1.body.velocity.x = -100;
+            enemy1.direction = "v";
             enemy1.scale.x = -1;
         }else if(enemy1.direction == "h"){
-            enemy1.animations.play("walk")
+            //enemy1.animations.play("walk")
             enemy1.body.velocity.x = 100;
             enemy1.scale.x = 1;
+        }else if(enemy1.direction == "v"){
+            //enemy1.animations.play("walk")
+            enemy1.body.velocity.x = -100;
+            enemy1.scale.x = -1;
         }
-        
-//rörelse av fiende2       
+//rörelse av fiende2 
         if(enemy2.x > 770 && enemy2.direction == "h"){
             enemy2.body.velocity.x = -100;
             enemy2.direction = "v";
             enemy2.scale.x = -1;
-            
         }else if(enemy2.x < 640 && enemy2.direction == "v"){
             enemy2.body.velocity.x = 100;
             enemy2.direction = "h";
@@ -135,13 +134,11 @@ var GameState1 = {
         if(enemy1.body.blocked.right){
             this.hitWall(null,enemy1);
         }
-            enemy1.body.velocity.y = 0;
+            
 
 //lägg till kollision
-        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, wall1, enemy1, enemy2]);
-
-        this.physics.arcade.collide(enemy1,[golv1, golv2]);
-        
+        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, wall1]);
+        this.physics.arcade.collide(enemy1,[golv1, golv2, wall1 ]);
         this.physics.arcade.collide(enemy2,[golv1, golv2,plattform1, plattform2, plattform3, plattform4, plattform5]);
        
     
@@ -150,8 +147,7 @@ var GameState1 = {
             player1.body.velocity.y = -450;
         }
 
-//villkor för att ta sig till nästa state eller avsluta spelet       
-        
+//villkor för att ta sig till nästa state eller avsluta spelet        
         this.game.physics.arcade.overlap(player1, checkpoint, this.ny, null, this);
         
         if(this.physics.arcade.collide(player1, checkpoint)){
