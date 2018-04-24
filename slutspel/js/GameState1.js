@@ -15,6 +15,7 @@ var GameState1 = {
         checkpoint = this.add.sprite(180,115,"goal");
         wall1 = this.add.sprite(75,599, "wall")
         player1.inputEnabled = true;
+        var points = this.add.text(20, 20, "Stars collected 0/2", {fontSize: "15px", fill: "#fff"});
         
         
 //ställ in fysik   
@@ -72,11 +73,7 @@ var GameState1 = {
         enemy1.body.velocity.x = 50;
         player1.body.collideWorldBounds = true;  
         
-//poängräknare 
-        scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
     },
-    
-
     
 //metod för patrullerande enemy
     hitWall: function(){

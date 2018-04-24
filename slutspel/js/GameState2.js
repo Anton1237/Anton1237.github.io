@@ -10,10 +10,10 @@ var GameState2 = {
         plattform4 = this.add.sprite(630,525,"plattform");
         plattform5 = this.add.sprite(500,220,"plattform");
         player1 = this.add.sprite(3,500,"player",3);
-        enemy1 = this.add.sprite(300,655,"enemy");
+        enemy1 = this.add.sprite(400,655,"enemy");
         checkpoint = this.add.sprite(180,115,"goal");
         player1.inputEnabled = true;
-        
+        var points = this.add.text(20, 20, "Stars collected 1/2", {fontSize: "15px", fill: "#fff"});
         
         
         
@@ -47,7 +47,7 @@ var GameState2 = {
         
 //ställ in tangenterna
         cursors = this.input.keyboard.createCursorKeys();       
-        JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.W);       
+        JumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);       
         
 //animationer  
         
@@ -100,7 +100,7 @@ update: function (){
         }
             
 //läs till kollision
-        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2, enemy1]);
+        this.physics.arcade.collide(player1,[plattform1, plattform2, plattform3, plattform4, plattform5, golv1, golv2,]);
         this.physics.arcade.collide(enemy1,[golv1, golv2]);
         
     
