@@ -21,7 +21,7 @@ body img{
 }
 
 nav{
-    display: block;
+    display: block; 
     background-color: black;
     margin-top: 40px;
     border-radius: 12px;
