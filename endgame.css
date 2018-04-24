@@ -1,0 +1,36 @@
+main{
+    text-align: center;
+    padding-top: 170px;
+    max-width: 100%;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    text-decoration-line: none
+    padding-bottom: 20px;
+}
+
+p{
+    font-size: 25px
+}
+
+
+img.anpassad{
+    max-width: 350px;
+    max-width: 95%;
+    height: auto;
+}
+
+
+
+@media (min-width: 805)and (orientation : landscape){
+    section{
+        width 50%;
+        height: 400px;
+        display: inline-block;
+    }
+    img{
+        max-height:330
+    }
+}
